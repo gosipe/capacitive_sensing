@@ -99,7 +99,26 @@ ax = plt.gca()
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 
-#plt.show()
+plt.show()
+# Z-score normalization for y1
+y3_mean = y3.mean()
+y3_std = y3.std()
+y3_zscore = (y3 - y3_mean) / y3_std
+
+# Find the value 2 standard deviations from the mean
+y3_2std_value = y3_mean + 3 * y3_std
+print(f"Value 2 standard deviations from the mean for y1: {y3_2std_value}")
+# Plot y1_zscore with a dotted line at y1_2std_value
+plt.figure(figsize=(8, 6))
+plt.plot(x_minutes, y3_zscore, color='blue', label='y1 Z-Score')
+plt.axhline(y=(y3_2std_value - y3_mean) / y3_std, color='red', linestyle='--', label='2 Std Dev Line')
+plt.xlabel('Time (min)')
+plt.ylabel('Z-Score')
+plt.title('Z-Score of y1 with 2 Std Dev Line')
+plt.legend()
+plt.tight_layout()
+plt.show()
+
 
 # Calculate the percentile for y1
 percentile_y1 = y1.quantile(0.99)
@@ -130,41 +149,41 @@ y4_lick_bouts = y4[y4 > y4_cutoff].values
 #print(f"Number of y3 lick bouts: {len(y3_lick_bouts)}")
 #print(f"Number of y4 lick bouts: {len(y4_lick_bouts)}")
 
-# Create a histogram of the values for y1
-plt.figure(figsize=(8, 6))
-plt.hist(y1, bins=30, color='blue', edgecolor='black')
-plt.xlabel('Capacitance (BM7)')
-plt.ylabel('Frequency')
-plt.title('Histogram of BM7 Capacitance Values')
-plt.tight_layout()
-#plt.show()
+# # Create a histogram of the values for y1
+# plt.figure(figsize=(8, 6))
+# plt.hist(y1, bins=30, color='blue', edgecolor='black')
+# plt.xlabel('Capacitance (BM7)')
+# plt.ylabel('Frequency')
+# plt.title('Histogram of BM7 Capacitance Values')
+# plt.tight_layout()
+# #plt.show()
 
-# Create a histogram of the values for y2
-plt.figure(figsize=(8, 6))
-plt.hist(y2, bins=30, color='orange', edgecolor='black')
-plt.xlabel('Capacitance (BM8)')
-plt.ylabel('Frequency')
-plt.title('Histogram of BM8 Capacitance Values')
-plt.tight_layout()
-#plt.show()
+# # Create a histogram of the values for y2
+# plt.figure(figsize=(8, 6))
+# plt.hist(y2, bins=30, color='orange', edgecolor='black')
+# plt.xlabel('Capacitance (BM8)')
+# plt.ylabel('Frequency')
+# plt.title('Histogram of BM8 Capacitance Values')
+# plt.tight_layout()
+# #plt.show()
 
-# Create a histogram of the values for y3
-plt.figure(figsize=(8, 6))
-plt.hist(y3, bins=30, color='green', edgecolor='black')
-plt.xlabel('Capacitance (BM9)')
-plt.ylabel('Frequency')
-plt.title('Histogram of BM9 Capacitance Values')
-plt.tight_layout()
-#plt.show()
+# # Create a histogram of the values for y3
+# plt.figure(figsize=(8, 6))
+# plt.hist(y3, bins=30, color='green', edgecolor='black')
+# plt.xlabel('Capacitance (BM9)')
+# plt.ylabel('Frequency')
+# plt.title('Histogram of BM9 Capacitance Values')
+# plt.tight_layout()
+# #plt.show()
 
-# Create a histogram of the values for y4
-plt.figure(figsize=(8, 6))
-plt.hist(y4, bins=30, color='red', edgecolor='black')
-plt.xlabel('Capacitance (BM10)')
-plt.ylabel('Frequency')
-plt.title('Histogram of BM10 Capacitance Values')
-plt.tight_layout()
-#plt.show()
+# # Create a histogram of the values for y4
+# plt.figure(figsize=(8, 6))
+# plt.hist(y4, bins=30, color='red', edgecolor='black')
+# plt.xlabel('Capacitance (BM10)')
+# plt.ylabel('Frequency')
+# plt.title('Histogram of BM10 Capacitance Values')
+# plt.tight_layout()
+# #plt.show()
 
 BM7_bottle_change = 2.86
 BM8_bottle_change = 3.87

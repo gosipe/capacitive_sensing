@@ -1,17 +1,6 @@
-#!/usr/bin/env python
-# -*- coding:utf-8 -*-
-
-from itertools import combinations
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
-
-
-
-
-
 
 def kapur_thresh(lick_trace,max_val):
     lick_hist, _ = np.histogram(lick_trace, bins=range(max_val), density=True)
@@ -45,7 +34,7 @@ def kapur_thresh(lick_trace,max_val):
 
 
 
-def otsu_threshold(lick_trace,max_val):
+def otsu_thresh(lick_trace,max_val):
     # Compute histogram of lick data
     histogram, bin_edges = np.histogram(lick_trace, bins=max_val, range=(0, max_val))
     # Normalize histogram to get probabilities
@@ -81,20 +70,20 @@ y3 = df.iloc[:, 3]
 y4 = df.iloc[:, 4]
 
 y1_max=np.max(y1)
-y1_kapur=kapur_threshold(y1,y1_max)
-y1_otsu=otsu_threshold(y1,y1_max)
+y1_kapur=kapur_thresh(y1,y1_max)
+y1_otsu=otsu_thresh(y1,y1_max)
 
 y2_max=np.max(y2)
-y2_kapur=kapur_threshold(y2,y2_max)
-y2_otsu=otsu_threshold(y2,y2_max)
+y2_kapur=kapur_thresh(y2,y2_max)
+y2_otsu=otsu_thresh(y2,y2_max)
 
 y3_max=np.max(y3)
-y3_kapur=kapur_threshold(y3,y3_max)
-y3_otsu=otsu_threshold(y3,y3_max)
+y3_kapur=kapur_thresh(y3,y3_max)
+y3_otsu=otsu_thresh(y3,y3_max)
 
 y4_max=np.max(y4)
-y4_kapur=kapur_threshold(y4,y4_max)
-y4_otsu=otsu_threshold(y4,y4_max)
+y4_kapur=kapur_thresh(y4,y4_max)
+y4_otsu=otsu_thresh(y4,y4_max)
 
 x_minutes = x / 60  # Convert seconds to minutes
 plt.figure(figsize=(10, 8))
@@ -174,7 +163,7 @@ plt.show(block=False)
 
 y_test=y4
 y_test_max=np.max(y_test)
-y_test_kapur=kapur_threshold(y_test,y_test_max)
+y_test_kapur=kapur_thresh(y_test,y_test_max)
 k_5=y_test_kapur+(y_test_kapur*0.05)
 k_10=y_test_kapur+(y_test_kapur*0.10)
 k_25=y_test_kapur+(y_test_kapur*0.25)
